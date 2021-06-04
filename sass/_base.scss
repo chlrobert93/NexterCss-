@@ -14,6 +14,15 @@ $color-grey-dark-2: #6D5D4B;
 $font-primary: 'Nunito', sans-serif;
 $font-display: 'Josefin Sans', sans-serif;
 
+
+//Responsive breakpoints
+//1200px/16px=75  --16 tamaño de fuente predeterminado del navegador
+$bp-largest: 75em;//1200px
+
+//1000px
+$bp-large: 62.5em;
+
+
 *,
 *::before,
 *::after{
@@ -25,6 +34,13 @@ $font-display: 'Josefin Sans', sans-serif;
 html{
     box-sizing:border-box; 
     font-size: 62.5%; //10px/16px = 62.5% -> 1rem = 10px
+
+    //1200 aplica a todo el documento para abajo 
+    @media only screen and (max-width:$bp-largest){
+        
+        font-size:50%;//8px/16px = 50% -> 1rem = 8px
+    
+    }
 }
 
 body{
@@ -38,14 +54,20 @@ body{
 
 
 .container{
-    display:grid;
-    
+    display:grid;   
     grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
-
    //1140/8 = 142.5
    //minmax(6rem, 1fr) que toda esta columna nunca sea maás pequeña que 6rem
-   
-   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content ,14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] 
+   repeat(8, [col-start] minmax(min-content ,14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+
+   @media only screen and (max-width: $bp-large){
+
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] 
+    repeat(8, [col-start] minmax(min-content ,14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+ 
+   }
    
   
 }
